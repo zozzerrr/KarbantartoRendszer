@@ -13,14 +13,16 @@
                 <h1>Here's a list of available tools</h1>
                 <table>
                     <thead>
+                        <td>ID</td>
                         <td>Name</td>
-                        <td>Interval</td>
+                        <td>Place</td>
                     </thead>
                     <tbody>
                         @foreach ($allTools as $tool)
                             <tr>
+                                <td>{{ $tool->id }}</td>
                                 <td>{{ $tool->name }}</td>
-                                <td class="inner-table">{{ $tool->minterval }}</td>
+                                <td>{{ $tool->place }}</td>
                             </tr>
                         @endforeach
                     </tbody>

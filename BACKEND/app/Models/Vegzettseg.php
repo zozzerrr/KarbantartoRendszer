@@ -15,9 +15,6 @@ class Vegzettseg extends Model
         'kepesites'
     ];
     
-    
     protected $primaryKey = 'id';
-
-   
 
 }
