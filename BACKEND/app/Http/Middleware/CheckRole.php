@@ -18,7 +18,7 @@ class CheckRole
     {
         if(!is_null(auth()->user()))
         {
-            if (!in_array(auth()->user()->id, $roles)) { // TODO:ROLEID
+            if (!in_array(auth()->user()->szerepkorID, $roles)) {
                 return redirect('/');
             }
             return $next($request);

@@ -36,13 +36,11 @@
                                 required autocomplete="new-password" />
             </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+             <!-- Name -->
+             <div>
+                <x-label for="szerepID" :value="__('szerepID')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+                <x-input id="szerepID" class="block mt-1 w-full" type="number" name="szerepID" :value="old('szerepID')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">

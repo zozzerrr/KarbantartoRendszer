@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+    protected $table= "szakember";
     /**
      * Display the registration view.
      *
@@ -33,16 +34,18 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:szakember'],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'nev' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'jelszo' => Hash::make($request->password),
+            'szerepkorID' => 1
         ]);
 
         event(new Registered($user));

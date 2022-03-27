@@ -19,7 +19,7 @@ require __DIR__.'/auth.php';
 Route::get('/test', [UserController::class, 'index'])->middleware('auth');;
 
 Route::resource('/vegzettsegek', VegzettsegController::class);
-Route::resource('/categories', CategoryController::class)->middleware(['auth'])->middleware(['checkRole:1']);
+Route::resource('/categories', CategoryController::class)->middleware(['checkRole:2']);
 // Route::get('/categories', [CategoryController::class, 'index'])->middleware(['checkRole:1,2,3']);
 // Route::put('/gepek/{gep_id}', [CategoryController::class, 'update'])->middleware(['checkRole:3']);
 // Route::delete('/gepek/{gep_id}', [CategoryController::class, 'delete'])->middleware(['checkRole:2']);
@@ -29,4 +29,7 @@ Route::get('/welcome', function(){
     return view('welcome');
 });
 
-Route::get('/register', [RegisteredUserController::class, 'create'])->middleware(['checkRole:1'])->name('register');
+// Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+// Route::post('/register', [RegisteredUserController::class, 'store']);
+// Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+// Route::post('/login', [AuthenticatedSessionController::class, 'store']);
