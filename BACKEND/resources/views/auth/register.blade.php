@@ -28,19 +28,19 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="jelszo" :value="__('jelszo')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="jelszo" class="block mt-1 w-full"
                                 type="password"
-                                name="password"
+                                name="jelszo"
                                 required autocomplete="new-password" />
             </div>
 
              <!-- Name -->
              <div>
-                <x-label for="szerepID" :value="__('szerepID')" />
+                <x-label for="szerepkorID" :value="__('szerepkorID')" />
 
-                <x-input id="szerepID" class="block mt-1 w-full" type="number" name="szerepID" :value="old('szerepID')" required autofocus />
+                <x-input id="szerepkorID" class="block mt-1 w-full" type="number" name="szerepkorID" :value="old('szerepID')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
