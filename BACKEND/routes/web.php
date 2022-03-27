@@ -22,8 +22,8 @@ Route::resource('/vegzettsegek', VegzettsegController::class);
 Route::resource('/categories', CategoryController::class)->middleware(['checkRole:2']);
 // Route::get('/categories', [CategoryController::class, 'index'])->middleware(['checkRole:1,2,3']);
 // Route::put('/gepek/{gep_id}', [CategoryController::class, 'update'])->middleware(['checkRole:3']);
-// Route::delete('/gepek/{gep_id}', [CategoryController::class, 'delete'])->middleware(['checkRole:2']);
-Route::resource('/tools', ToolController::class)->middleware(['auth']);
+//Route::delete('/gepek/{gep_id}', [CategoryController::class, 'delete'])->middleware(['checkRole:2']);
+Route::resource('/tools', ToolController::class)->middleware(['checkRole:2']);
 
 Route::get('/welcome', function(){
     return view('welcome');

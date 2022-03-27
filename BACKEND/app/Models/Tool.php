@@ -10,14 +10,18 @@ class Tool extends Model
     public $timestamps = false; 
     //protected $table= "eszkozok";
     public $incrementing = false;
+     protected $table= "eszkoz";
 
     // In Laravel 6.0+ make sure to also set $keyType
     protected $keyType = 'string';
 
     protected $fillable = [
         'id',
-        'name',
-        'place',
-        'category_id'
+        'kategoriaid',
+        'nev',
+        'leiras',
+        'elhelyezkedes',
+        'kovetkezokarbantartas'
+
     ];
 }

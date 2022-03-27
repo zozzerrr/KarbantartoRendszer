@@ -11,12 +11,18 @@
                     @csrf
                     <h1> Enter Details to create a category</h1>
                     <div class="form-input">
-                        <label>Name</label> <input type="text" name="name">
+                        <label>Szuloid</label> <input type="text" name="szuloid">
                     </div>
 
                     <div class="form-input">
-                        <label>Interval</label> <input type="text" name="minterval">
+                        <label>Nev</label> <input type="text" name="nev">
                     </div>
+                    <div class="form-input">
+                        <label>Intervallum</label> <input type="text" name="intervallum">
+                    </div>
+                    <div class="form-input">
+                        <label>Normaido</label> <input type="text" name="normaido">
+                    </div>                                        
 
                     <button type="submit">Submit</button>
                 </form>

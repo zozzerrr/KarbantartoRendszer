@@ -13,14 +13,18 @@
                 <h1>Here's a list of available categories</h1>
                 <table>
                     <thead>
-                        <td>Name</td>
-                        <td>Interval</td>
+                        <td>szuloid</td>
+                        <td>nev</td>
+                        <td>intervallum</td>
+                        <td>normaido</td>
                     </thead>
                     <tbody>
                         @foreach ($allCategories as $category)
                             <tr>
-                                <td>{{ $category->name }}</td>
-                                <td class="inner-table">{{ $category->minterval }}</td>
+                                <td>{{ $category->szuloid }}</td>                                
+                                <td>{{ $category->nev }}</td>
+                                <td>{{ $category->intervallum}}</td>
+                                <td>{{ $category->normaido }}</td>
                             </tr>
                         @endforeach
                     </tbody>

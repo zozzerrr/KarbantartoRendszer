@@ -14,11 +14,11 @@ class Category extends Model
     //By making it to false it will override the default setting.
 
     protected $fillable = [
-        'name',
-        'minterval'
+        'id',
+        'szuloid',
+        'nev',
+        'intervallum',
+        'normaido'
     ];
-    
-    protected $hidden = [
-        'id'
-    ];
+
 }

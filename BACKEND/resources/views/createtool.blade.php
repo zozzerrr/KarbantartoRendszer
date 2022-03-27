@@ -11,16 +11,18 @@
                 <h1>Here's a list of available categories</h1>
                 <table>
                     <thead>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Interval</td>
+                        <td>szuloid</td>
+                        <td>nev</td>
+                        <td>intervallum</td>
+                        <td>normaido</td>
                     </thead>
                     <tbody>
                         @foreach ($allCategories as $category)
                             <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td class="inner-table">{{ $category->minterval }}</td>
+                                <td>{{ $category->szuloid }}</td>                                
+                                <td>{{ $category->nev }}</td>
+                                <td>{{ $category->intervallum}}</td>
+                                <td>{{ $category->normaido }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -30,22 +32,30 @@
             <div class="content">
                 <form method="POST" action="{{ config('app.url')}}/tools">
                     @csrf
-                    <h1> Enter Details to create a category</h1>
+                    <h1> Enter Details to create a tool</h1>
                     <div class="form-input">
                         <label>ID</label> <input type="text" name="id">
                     </div>
 
                     <div class="form-input">
-                        <label>Name</label> <input type="text" name="name">
+                        <label>kategoriaid</label> <input type="text" name="kategoriaid">
                     </div>
 
                     <div class="form-input">
-                        <label>Place</label> <input type="text" name="place">
+                        <label>nev</label> <input type="text" name="nev">
                     </div>
 
                     <div class="form-input">
-                        <label>Category</label> <input type="number" name="category_id">
+                        <label>leiras</label> <input type="text" name="leiras">
                     </div>
+                    <div class="form-input">
+                        <label>elhelyezkedes</label> <input type="text" name="elhelyezkedes">
+                    </div>
+                    <div class="form-input">
+                        <label>kovetkezokarbantartas</label> <input type="text" name="kovetkezokarbantartas">
+                    </div>                    
+
+
 
                     <button type="submit">Submit</button>
                 </form>

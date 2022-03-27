@@ -14,15 +14,21 @@
                 <table>
                     <thead>
                         <td>ID</td>
-                        <td>Name</td>
-                        <td>Place</td>
+                        <td>kategoriaid</td>
+                        <td>nev</td>
+                        <td>leiras</td>
+                        <td>elhelyezkedes</td>
+                        <td>kovetkezokarbantartas</td>
                     </thead>
                     <tbody>
                         @foreach ($allTools as $tool)
                             <tr>
                                 <td>{{ $tool->id }}</td>
-                                <td>{{ $tool->name }}</td>
-                                <td>{{ $tool->place }}</td>
+                                <td>{{ $tool->kategoriaid }}</td>
+                                <td>{{ $tool->nev }}</td>
+                                <td>{{ $tool->leiras }}</td>
+                                <td>{{ $tool->elhelyezkedes }}</td>
+                                <td>{{ $tool->kovetkezokarbantartas }}</td>
                             </tr>
                         @endforeach
                     </tbody>

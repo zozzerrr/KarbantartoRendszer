@@ -9,7 +9,7 @@ class Vegzettseg extends Model
 {
     
     public $timestamps = false; 
-    protected $table= "vegzettsegek";
+    protected $table= "vegzettseg";
 
     protected $fillable = [
         'kepesites'

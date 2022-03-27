@@ -40,9 +40,11 @@ class ToolController extends Controller
     {
         \App\Models\Tool::create([
             'id' => $request->get('id'),
-            'name' => $request->get('name'),
-            'place' => $request->get('place'),
-            'category_id' => $request->get('category_id')
+            'kategoriaid' => $request->get('kategoriaid'),
+            'nev' => $request->get('nev'),
+            'leiras' => $request->get('leiras'),
+            'elhelyezkedes'  => $request->get('elhelyezkedes'),
+            'kovetkezokarbantartas' => $request->get('kovetkezokarbantartas')
         ]);
   
         return redirect('/tools');

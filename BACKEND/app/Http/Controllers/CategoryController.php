@@ -35,10 +35,14 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         \App\Models\Category::create([
-            'name' => $request->get('name'),
-            'minterval' => $request->get('minterval')
+
+            'szuloid' => $request->get('szuloid'),
+            'nev' => $request->get('nev'),
+            'intervallum' => $request->get('intervallum'),
+            'normaido'=> $request->get('normaido')
+
         ]);
   
         return redirect('/categories');
