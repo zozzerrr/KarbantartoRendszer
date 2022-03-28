@@ -15,7 +15,7 @@ class ToolController extends Controller
     {
         $tools = \App\Models\Tool::all();
 
-        return view('viewtools', ['allTools' => $tools]);
+        return view('tools', ['allTools' => $tools]);
     }
 
     /**
@@ -46,7 +46,7 @@ class ToolController extends Controller
             'elhelyezkedes'  => $request->get('elhelyezkedes'),
             'kovetkezokarbantartas' => $request->get('kovetkezokarbantartas')
         ]);
-  
+
         return redirect('/tools');
     }
 

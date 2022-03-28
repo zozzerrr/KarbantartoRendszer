@@ -15,7 +15,7 @@ class VegzettsegController extends Controller
     {
         $vezgettsegek = \App\Models\Vegzettseg::all();
 
-        return view('viewvegzettsegek', ['allVegzettseg' => $vezgettsegek]);
+        return view('vegzettsegek', ['allVegzettseg' => $vezgettsegek]);
     }
 
     /**

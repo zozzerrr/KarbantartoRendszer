@@ -15,7 +15,7 @@ class CategoryController extends Controller
     {
         $categories = \App\Models\Category::all();
 
-        return view('viewcategories', ['allCategories' => $categories]);
+        return view('categories', ['allCategories' => $categories]);
     }
 
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         \App\Models\Category::create([
 
             'szuloid' => $request->get('szuloid'),
@@ -44,7 +44,7 @@ class CategoryController extends Controller
             'normaido'=> $request->get('normaido')
 
         ]);
-  
+
         return redirect('/categories');
     }
 
