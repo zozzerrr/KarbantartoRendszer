@@ -12,10 +12,16 @@ class CheckRole extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    public function handle($request)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        if (!is_null(auth()->user())) {
+            if (!in_array(auth()->user()->szerepkorID, $roles)) {
+                return redirect('/');
+            }
+            return $next($request);
         }
+
+        return redirect('/');
     }
+
 }
