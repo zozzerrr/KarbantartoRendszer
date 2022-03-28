@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('auth.register', ['roles' => Role::all()->except([1])]);
     }
 
     /**
@@ -36,15 +37,16 @@ class RegisteredUserController extends Controller
     {
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'nev' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:szakember'],
             'jelszo' => ['required', Rules\Password::defaults()],
+            'szerepkorID' => ['required']
         ]);
-        
+
         //dd($request);
 
         $user = User::create([
-            'nev' => $request->name,
+            'nev' => $request->nev,
             'email' => $request->email,
             'jelszo' => Hash::make($request->jelszo),
             'szerepkorID' => $request->szerepkorID
