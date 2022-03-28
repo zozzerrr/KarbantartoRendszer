@@ -2,7 +2,7 @@
 
     <div class="container">
 
-    <form class="p-3" method="POST" action="{{ config('categories')}}">
+    <form class="p-3" method="POST" action="{{ route('categories.store')}}">
             @csrf
             <h1> Enter Details to create a category</h1>
 
@@ -10,7 +10,7 @@
 
                 <x-label for="szerepkorID" :value="__('Szerepkör')" />
 
-                <select class="form-select" id="szerepkorID" name="szerepkorID" aria-label="szerepkorID">
+                <select class="form-select" id="szuloid" name="szuloid" aria-label="szuloid">
                     <option selected>Válasszon</option>
                     <option value="0">Fő kategória</option>
                     @foreach ($categories as $categorie)

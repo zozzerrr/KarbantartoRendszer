@@ -37,12 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-
         $request->validate([
             'nev' => ['required', 'string', 'max:255'],
-            'szuloid' => ['required', 'number'],
-            'intervallum' => ['required', 'number'],
+            'szuloid' => ['required', 'numeric'],
+            'intervallum' => ['required', 'numeric'],
             'normaido' => ['required'],
         ]);
 

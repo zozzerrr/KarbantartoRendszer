@@ -18,12 +18,12 @@
                 @if(Auth::user()->hasRole('Eszközfelelős'))
 
                     <li class="nav-item">
-                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
+                        <x-nav-link class="nav-link" :href="route('categories.create')" :active="request()->routeIs('categories.create')">
                             {{ __('Kategória felvétele') }}
                         </x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('categories')">
+                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
                             {{ __('Kategóriák') }}
                         </x-nav-link>
                     </li>
