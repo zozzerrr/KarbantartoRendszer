@@ -43,7 +43,6 @@ class RegisteredUserController extends Controller
             'szerepkorID' => ['required']
         ]);
 
-        //dd($request);
 
         $user = User::create([
             'nev' => $request->nev,

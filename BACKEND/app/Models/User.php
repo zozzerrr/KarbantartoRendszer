@@ -12,6 +12,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps = false;
+
     protected $table= "szakember";
 
     /**
@@ -41,10 +42,15 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the post that owns the comment.
+     * Get the role that owns the user.
      */
-    public function role()
+    public function szerepkor()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class,'szerepkorID');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->szerepkor->nev == $role;
     }
 }

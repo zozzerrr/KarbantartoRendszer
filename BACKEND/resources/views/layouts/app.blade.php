@@ -17,22 +17,24 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
     </head>
+    <style>
+        html {
+            background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+    </style>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
             <!-- Page Content -->
-            <main class="container">
+            <main class="">
                 {{ $slot }}
             </main>
+
         </div>
     </body>
 </html>

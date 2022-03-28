@@ -21,6 +21,13 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
+    <style>
+        html {
+            background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+    </style>
     <body>
         <div class="container">
             {{ $slot }}

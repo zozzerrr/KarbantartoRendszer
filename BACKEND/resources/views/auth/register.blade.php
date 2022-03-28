@@ -1,13 +1,10 @@
-<x-guest-layout>
+<x-app-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" style="width:20" />
             </a>
         </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <div class="row justify-content-center p-2">
 
@@ -45,7 +42,7 @@
              <!-- Name -->
 
              <div class="mt-4">
-                <x-label for="szerepkorID" :value="__('Szerepkor')" />
+                <x-label for="szerepkorID" :value="__('Szerepkör')" />
 
                  <select class="form-select" id="szerepkorID" name="szerepkorID" aria-label="szerepkorID">
                      <option selected>Válasszon</option>
@@ -62,6 +59,9 @@
                     {{ __('Felhasználó hozzáadása') }}
                 </x-button>
             </div>
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
         </form>
 
         </div>
@@ -70,4 +70,4 @@
 
 
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>
