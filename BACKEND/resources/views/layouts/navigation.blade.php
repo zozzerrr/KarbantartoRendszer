@@ -29,12 +29,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
+                        <x-nav-link class="nav-link" :href="route('tools.create')" :active="request()->routeIs('tools.create')">
                             {{ __('Eszköz felvétele') }}
                         </x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
+                        <x-nav-link class="nav-link" :href="route('tools.index')" :active="request()->routeIs('tools.index')">
                             {{ __('Eszközök') }}
                         </x-nav-link>
                     </li>

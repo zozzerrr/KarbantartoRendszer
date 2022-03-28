@@ -3,7 +3,7 @@
     <head>
         <title>View Tools</title>
 
-        
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -16,7 +16,7 @@
                     <tbody>
                         @foreach ($allVegzettseg as $vegzettseg)
                             <tr>
-                                <td>{{ $vegzettseg->kepesites }}</td>                                
+                                <td>{{ $vegzettseg->kepesites }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -25,3 +25,33 @@
         </div>
     </body>
     </html>
+
+<x-app-layout>
+
+    <div class="container">
+
+        <table class="table">
+            <thead>
+
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Képesítés</th>
+            </tr>
+
+            </thead>
+            <tbody>
+
+            @foreach ($vezgettsegek as $vezgettsegg)
+                <tr>
+                    <td scope="row">{{ $loop->index }}</td>
+                    <td >{{ $vezgettsegg->kepesites }}</td>
+
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+
+    </div>
+
+</x-app-layout>

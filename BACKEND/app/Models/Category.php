@@ -29,6 +29,17 @@ class Category extends Model
         return $this->hasMany(Category::class, 'szuloid');
     }
 
+    /**
+     * Get the comments for the blog post.
+     */
+    public function tools()
+    {
+        return $this->hasMany(Tool::class, 'kategoriaid');
+    }
 
-
+    public function vegzettseg()
+    {
+        //return $this->belongsToMany(Vegzettseg::class,'vegoria')->withPivot('kategoria_id');
+        return $this->belongsToMany(Vegzettseg::class,'vegoria','kategoria_id', 'vegzettseg_id');
+    }
 }

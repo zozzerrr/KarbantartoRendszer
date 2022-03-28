@@ -1,65 +1,65 @@
-<!doctype html>
-    <html lang="{{ app()->getLocale() }}">
-    <head>
-      <title>Create Product | Product Store</title>
-      <!-- styling etc. -->
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <h1>Here's a list of available categories</h1>
-                <table>
-                    <thead>
-                        <td>szuloid</td>
-                        <td>nev</td>
-                        <td>intervallum</td>
-                        <td>normaido</td>
-                    </thead>
-                    <tbody>
-                        @foreach ($allCategories as $category)
-                            <tr>
-                                <td>{{ $category->szuloid }}</td>                                
-                                <td>{{ $category->nev }}</td>
-                                <td>{{ $category->intervallum}}</td>
-                                <td>{{ $category->normaido }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+<x-app-layout>
+
+    <div class="container">
+
+        <form class="p-3" method="POST" action="{{ route('tools.store')}}">
+            @csrf
+            <h1> Enter Details to create a category</h1>
+
+            <div class="mt-4">
+
+                <x-label for="kategoriaid" :value="__('Katagóriába sorolás')" />
+
+                <select class="form-select" id="kategoriaid" name="kategoriaid" aria-label="kategoriaid">
+                    <option selected>Válasszon</option>
+                    @foreach ($categories as $categorie)
+                        <option value="{{ $categorie->id }}">{{ $categorie->nev }}</option>
+                    @endforeach
+                </select>
+
             </div>
-        </div>
-            <div class="content">
-                <form method="POST" action="{{ config('app.url')}}/tools">
-                    @csrf
-                    <h1> Enter Details to create a tool</h1>
-                    <div class="form-input">
-                        <label>ID</label> <input type="text" name="id">
-                    </div>
 
-                    <div class="form-input">
-                        <label>kategoriaid</label> <input type="text" name="kategoriaid">
-                    </div>
+            <div class="mb-3">
+                <x-label for="id" :value="__('Azonosító')" />
 
-                    <div class="form-input">
-                        <label>nev</label> <input type="text" name="nev">
-                    </div>
-
-                    <div class="form-input">
-                        <label>leiras</label> <input type="text" name="leiras">
-                    </div>
-                    <div class="form-input">
-                        <label>elhelyezkedes</label> <input type="text" name="elhelyezkedes">
-                    </div>
-                    <div class="form-input">
-                        <label>kovetkezokarbantartas</label> <input type="text" name="kovetkezokarbantartas">
-                    </div>                    
-
-
-
-                    <button type="submit">Submit</button>
-                </form>
+                <x-input id="id" type="text" name="id" :value="old('id')" required autofocus />
             </div>
-        </div>
-    </body>
-    </html>
+
+            <div class="mb-3">
+                <x-label for="nev" :value="__('Eszköz neve')" />
+
+                <x-input id="intervallum" type="text" name="nev" :value="old('nev')" required autofocus />
+            </div>
+
+            <div class="mb-3">
+                <x-label for="leiras" :value="__('Eszköz leírása')" />
+
+                <textarea class="form-control" id="leiras" name="leiras"  rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <x-label for="elhelyezkedes" :value="__('Elhelyezkedes')" />
+
+                <x-input id="elhelyezkedes" type="text" name="elhelyezkedes" :value="old('elhelyezkedes')" required autofocus />
+            </div>
+
+            <div class="mb-3">
+                <x-label for="kovetkezokarbantartas" :value="__('Következő karbantartás')" />
+
+                <x-input id="kovetkezokarbantartas" type="date" name="kovetkezokarbantartas" :value="old('kovetkezokarbantartas')" required autofocus />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+
+                <x-button class="btn-success">
+                    {{ __('Kategória hozzáadása') }}
+                </x-button>
+            </div>
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        </form>
+    </div>
+</x-app-layout>
+
+

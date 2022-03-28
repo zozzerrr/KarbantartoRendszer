@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vegzettseg;
 use Illuminate\Http\Request;
 
 class VegzettsegController extends Controller
@@ -13,9 +14,9 @@ class VegzettsegController extends Controller
      */
     public function index()
     {
-        $vezgettsegek = \App\Models\Vegzettseg::all();
+        $vezgettsegek = Vegzettseg::all();
 
-        return view('vegzettsegek', ['allVegzettseg' => $vezgettsegek]);
+        return view('vegzettsegek', ['vegzettsegek' => $vezgettsegek]);
     }
 
     /**
@@ -87,5 +88,27 @@ class VegzettsegController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addCategory($id)
+    {
+        $vegzettseg = Vegzettseg::find($id);
+
+        if (! $vegzettseg ) {
+            $foglalt_kat = $vegzettseg->kategoria;
+
+            $kat_ids = [];
+            foreach ($foglalt_kat as $kat) {
+                $kat_ids[] = $kat->id;
+            }
+
+            dd($kat_ids);
+        }
     }
 }

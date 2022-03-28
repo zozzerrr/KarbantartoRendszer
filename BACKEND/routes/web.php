@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Vegzettseg;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStatus;
 

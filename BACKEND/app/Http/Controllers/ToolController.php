@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Tool;
+use App\Models\Vegzettseg;
 use Illuminate\Http\Request;
 
 class ToolController extends Controller
@@ -13,7 +16,8 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = \App\Models\Tool::all();
+        $tools = Tool::all();
+
 
         return view('tools', ['allTools' => $tools]);
     }
@@ -25,9 +29,10 @@ class ToolController extends Controller
      */
     public function create()
     {
-        $categories = \App\Models\Category::all();
 
-        return view('createtool', ['allCategories' => $categories]);
+        $categories = Category::all();
+
+        return view('createtool', ['categories' => $categories]);
     }
 
     /**
@@ -38,7 +43,8 @@ class ToolController extends Controller
      */
     public function store(Request $request)
     {
-        \App\Models\Tool::create([
+
+       Tool::create([
             'id' => $request->get('id'),
             'kategoriaid' => $request->get('kategoriaid'),
             'nev' => $request->get('nev'),
