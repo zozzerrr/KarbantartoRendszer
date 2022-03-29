@@ -1,21 +1,25 @@
-<!doctype html>
-    <html lang="{{ app()->getLocale() }}">
-    <head>
-      <title>Create kepesites </title>
-      <!-- styling etc. -->
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <form method="POST" action="{{ config('app.url')}}/vegzettsegek">
-                    @csrf
-                    <h1> Enter Details to create a vegzettseg</h1>
-                    <div class="form-input">
-                        <label>Kepesites neve</label> <input type="text" name="kepesites">
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
+<x-app-layout>
+
+    <div class="container">
+
+        <form class="p-3" method="POST" action="{{ route('vegzettsegek.store')}}">
+            @csrf
+            <div class="mb-3">
+                <x-label for="kepesites" :value="__('Képesítés neve')" />
+
+                <x-input id="kepesites" type="text" name="kepesites" :value="old('kepesites')" required autofocus />
             </div>
-        </div>
-    </body>
-    </html>
+
+            <div class="flex items-center justify-end mt-4">
+
+                <x-button class="btn-success">
+                    {{ __('Kategória hozzáadása') }}
+                </x-button>
+            </div>
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        </form>
+
+    </div>
+</x-app-layout>

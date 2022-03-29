@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Vegzettseg;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStatus;
 
@@ -7,7 +8,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\VegzettsegController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 Route::get('/', function () {
@@ -16,20 +16,21 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/test', [UserController::class, 'index'])->middleware('auth');;
 
-Route::resource('/vegzettsegek', VegzettsegController::class);
-Route::resource('/categories', CategoryController::class)->middleware(['checkRole:2']);
-// Route::get('/categories', [CategoryController::class, 'index'])->middleware(['checkRole:1,2,3']);
-// Route::put('/gepek/{gep_id}', [CategoryController::class, 'update'])->middleware(['checkRole:3']);
-//Route::delete('/gepek/{gep_id}', [CategoryController::class, 'delete'])->middleware(['checkRole:2']);
-Route::resource('/tools', ToolController::class)->middleware(['checkRole:2']);
+Route::middleware(['auth','checkRole:3'])->group(function () {
 
-Route::get('/welcome', function(){
-    return view('welcome');
+    Route::resource('vegzettsegek', VegzettsegController::class);
+
+    Route::get('vegoria/{id}', [VegzettsegController::class,'findRemainingCategories']);
+    Route::post('vegoria', [VegzettsegController::class,'addCategory'])->name('vegoria.addCategory');
+
 });
 
-// Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-// Route::post('/register', [RegisteredUserController::class, 'store']);
-// Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-// Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::middleware(['auth','checkRole:2'])->group(function () {
+
+    Route::resource('/tools', ToolController::class);
+    Route::resource('categories', CategoryController::class)
+        ->names('categories');
+
+});

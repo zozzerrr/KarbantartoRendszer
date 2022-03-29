@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,9 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = \App\Models\Category::all();
+        $categories = Category::all();
 
-        return view('viewcategories', ['allCategories' => $categories]);
+        return view('categories', ['categories' => $categories]);
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('createcategory');
+        return view('createcategory', ['categories' => Category::all()]);
     }
 
     /**
@@ -35,16 +36,21 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
-        \App\Models\Category::create([
+    {
+        $request->validate([
+            'nev' => ['required', 'string', 'max:255'],
+            'szuloid' => ['required', 'numeric'],
+            'intervallum' => ['required', 'numeric'],
+            'normaido' => ['required'],
+        ]);
 
+        Category::create([
             'szuloid' => $request->get('szuloid'),
             'nev' => $request->get('nev'),
             'intervallum' => $request->get('intervallum'),
             'normaido'=> $request->get('normaido')
-
         ]);
-  
+
         return redirect('/categories');
     }
 

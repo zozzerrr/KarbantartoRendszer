@@ -1,32 +1,52 @@
-<!doctype html>
-    <html lang="{{ app()->getLocale() }}">
-    <head>
-      <title>Create Product | Product Store</title>
-      <!-- styling etc. -->
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <form method="POST" action="{{ config('app.url')}}/categories">
-                    @csrf
-                    <h1> Enter Details to create a category</h1>
-                    <div class="form-input">
-                        <label>Szuloid</label> <input type="text" name="szuloid">
-                    </div>
+<x-app-layout>
 
-                    <div class="form-input">
-                        <label>Nev</label> <input type="text" name="nev">
-                    </div>
-                    <div class="form-input">
-                        <label>Intervallum</label> <input type="text" name="intervallum">
-                    </div>
-                    <div class="form-input">
-                        <label>Normaido</label> <input type="text" name="normaido">
-                    </div>                                        
+    <div class="container">
 
-                    <button type="submit">Submit</button>
-                </form>
+    <form class="p-3" method="POST" action="{{ route('categories.store')}}">
+            @csrf
+            <h1> Enter Details to create a category</h1>
+
+            <div class="mt-4">
+
+                <x-label for="szerepkorID" :value="__('Szerepkör')" />
+
+                <select class="form-select" id="szuloid" name="szuloid" aria-label="szuloid">
+                    <option selected>Válasszon</option>
+                    <option value="0">Fő kategória</option>
+                    @foreach ($categories as $categorie)
+                        <option value="{{ $categorie->id }}">{{ $categorie->nev }}</option>
+                    @endforeach
+                </select>
+
             </div>
-        </div>
-    </body>
-    </html>
+
+            <div class="mb-3">
+                <x-label for="nev" :value="__('Név')" />
+
+                <x-input id="nev" type="text" name="nev" :value="old('nev')" required autofocus />
+            </div>
+
+            <div class="mb-3">
+                <x-label for="intervallum" :value="__('Intervallum')" />
+
+                <x-input id="intervallum" type="number" name="intervallum" :value="old('intervallum')" required autofocus />
+            </div>
+
+            <div class="mb-3">
+                <x-label for="normaido" :value="__('Normaidő')" />
+
+                <x-input id="normaido" type="time" step="1" name="normaido" :value="old('normaido')" required autofocus />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+
+                <x-button class="btn-success">
+                    {{ __('Kategória hozzáadása') }}
+                </x-button>
+            </div>
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        </form>
+    </div>
+</x-app-layout>

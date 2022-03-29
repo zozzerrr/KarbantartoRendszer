@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public $timestamps = false; 
+    public $timestamps = false;
+
     protected $table= "szakember";
 
     /**
@@ -39,5 +39,18 @@ class User extends Authenticatable
     public function getAuthPassword()
     {
         return $this->jelszo;
+    }
+
+    /**
+     * Get the role that owns the user.
+     */
+    public function szerepkor()
+    {
+        return $this->belongsTo(Role::class,'szerepkorID');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->szerepkor->nev == $role;
     }
 }

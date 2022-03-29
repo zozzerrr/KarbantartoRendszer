@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tool extends Model
 {
-    public $timestamps = false; 
+    public $timestamps = false;
     //protected $table= "eszkozok";
     public $incrementing = false;
      protected $table= "eszkoz";
@@ -24,4 +23,13 @@ class Tool extends Model
         'kovetkezokarbantartas'
 
     ];
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'kategoriaid');
+    }
+
 }

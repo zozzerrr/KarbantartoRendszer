@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    //use HasFactory; //?
-    public $timestamps = false; 
+    public $timestamps = false;
+
     protected $table= "kategoria";
-    // Explanation : By default laravel will expect created_at & updated_at column in your table. 
-    //By making it to false it will override the default setting.
 
     protected $fillable = [
         'id',
@@ -21,4 +19,27 @@ class Category extends Model
         'normaido'
     ];
 
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'szuloid');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'szuloid');
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function tools()
+    {
+        return $this->hasMany(Tool::class, 'kategoriaid');
+    }
+
+    public function vegzettseg()
+    {
+        //return $this->belongsToMany(Vegzettseg::class,'vegoria')->withPivot('kategoria_id');
+        return $this->belongsToMany(Vegzettseg::class,'vegoria','kategoria_id', 'vegzettseg_id');
+    }
 }

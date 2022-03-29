@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Vegzettseg extends Model
 {
-    
-    public $timestamps = false; 
+
+    public $timestamps = false;
+
     protected $table= "vegzettseg";
 
     protected $fillable = [
+        'id',
         'kepesites'
     ];
-    
-    protected $primaryKey = 'id';
 
+    public function kategoria()
+    {
+        return $this->belongsToMany(Category::class,'vegoria','vegzettseg_id', 'kategoria_id');
+    }
 }
