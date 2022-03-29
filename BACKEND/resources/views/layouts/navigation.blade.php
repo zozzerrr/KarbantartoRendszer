@@ -23,7 +23,7 @@
                         </x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
+                        <x-nav-link class="nav-link" :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                             {{ __('Kategóriák') }}
                         </x-nav-link>
                     </li>
@@ -38,8 +38,21 @@
                             {{ __('Eszközök') }}
                         </x-nav-link>
                     </li>
+                    @endif
 
-                @endif
+                    @if(Auth::user()->hasRole('Operátór'))
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('vegzettsegek.create')" :active="request()->routeIs('vegzettsegek.create')">
+                            {{ __('Végzettség felvétele') }}
+                        </x-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('vegzettsegek.index')" :active="request()->routeIs('vegzettsegek.index')">
+                            {{ __('Végzettségek') }}
+                        </x-nav-link>
+                    </li>
+                    @endif
+
 
                 @if(Auth::user()->hasRole('Adminisztrátor'))
                 <li class="nav-item">

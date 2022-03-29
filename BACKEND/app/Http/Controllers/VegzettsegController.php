@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Vegzettseg;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VegzettsegController extends Controller
 {
@@ -14,9 +16,9 @@ class VegzettsegController extends Controller
      */
     public function index()
     {
-        $vezgettsegek = Vegzettseg::all();
+        $vegzettsegek = Vegzettseg::all();
 
-        return view('vegzettsegek', ['vegzettsegek' => $vezgettsegek]);
+        return view('vegzettsegek', ['vegzettsegek' => $vegzettsegek]);
     }
 
     /**
@@ -37,7 +39,7 @@ class VegzettsegController extends Controller
      */
     public function store(Request $request)
     {
-        \App\Models\Vegzettseg::create([
+        Vegzettseg::create([
           'kepesites' => $request->get('kepesites')
 
         ]);
@@ -96,11 +98,11 @@ class VegzettsegController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function addCategory($id)
+    public function findRemainingCategories($id)
     {
         $vegzettseg = Vegzettseg::find($id);
 
-        if (! $vegzettseg ) {
+        if ( $vegzettseg ) {
             $foglalt_kat = $vegzettseg->kategoria;
 
             $kat_ids = [];
@@ -108,7 +110,27 @@ class VegzettsegController extends Controller
                 $kat_ids[] = $kat->id;
             }
 
-            dd($kat_ids);
+            $categories = Category::select('id','nev')->whereNotIn('id', $kat_ids)->get();
+
+            return view('vegoria', ['categories' => $categories, 'vegzettseg' => $vegzettseg,'empty' => false]);
         }
+
+        return view('vegoria', ['empty' => true]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addCategory(Request $request)
+    {
+        DB::table('vegoria')->insert(
+            ['vegzettseg_id' => $request->get('vegzettseg_id'), 'kategoria_id' => $request->get('kategoria_id')]
+        );
+
+        // @TODO
+        return 'kész';
     }
 }

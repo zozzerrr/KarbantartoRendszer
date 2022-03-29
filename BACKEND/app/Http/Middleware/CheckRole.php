@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use Auth;
 
 class CheckRole extends Middleware
 {
@@ -12,10 +14,10 @@ class CheckRole extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle($request, Closure $next, ...$guards)
     {
         if (!is_null(auth()->user())) {
-            if (!in_array(auth()->user()->szerepkorID, $roles)) {
+            if (!in_array(auth()->user()->szerepkorID, $guards)) {
                 return redirect('/');
             }
             return $next($request);

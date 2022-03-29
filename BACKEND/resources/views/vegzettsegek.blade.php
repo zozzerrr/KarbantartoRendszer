@@ -1,31 +1,3 @@
-<!doctype html>
-    <html lang="{{ app()->getLocale() }}">
-    <head>
-        <title>View Tools</title>
-
-
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <h1>Here's a list of available vegzettsegek</h1>
-                <table>
-                    <thead>
-                        <td>kepesitesek</td>
-                    </thead>
-                    <tbody>
-                        @foreach ($allVegzettseg as $vegzettseg)
-                            <tr>
-                                <td>{{ $vegzettseg->kepesites }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </body>
-    </html>
-
 <x-app-layout>
 
     <div class="container">
@@ -41,11 +13,11 @@
             </thead>
             <tbody>
 
-            @foreach ($vezgettsegek as $vezgettsegg)
+            @foreach ($vegzettsegek as $vegzettseg)
                 <tr>
                     <td scope="row">{{ $loop->index }}</td>
-                    <td >{{ $vezgettsegg->kepesites }}</td>
-
+                    <td >{{ $vegzettseg->kepesites }}</td>
+                    <td ><a class="btn btn-warning" href="{{ config('app_url') }}/vegoria/{{ $vegzettseg->id }}">Frisítés</a></td>
                 </tr>
             @endforeach
 
