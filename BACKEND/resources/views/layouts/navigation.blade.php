@@ -56,6 +56,11 @@
                             {{ __('Karbantartók') }}
                         </x-nav-link>
                     </li>
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('karbantartasok.index')" :active="request()->routeIs('karbantartasok.index')">
+                            {{ __('Karbantartások') }}
+                        </x-nav-link>
+                    </li>                    
                     @endif
 
 

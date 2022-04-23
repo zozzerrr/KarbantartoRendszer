@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Karbantartas;
+
 
 class KarbantartasController extends Controller
 {
@@ -13,7 +15,10 @@ class KarbantartasController extends Controller
      */
     public function index()
     {
-        //
+        $karbantartasok = Karbantartas::all();
+
+
+        return view('karbantartasok', ['allKarbantartasok' => $karbantartasok]);
     }
 
     /**
