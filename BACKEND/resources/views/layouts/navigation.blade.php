@@ -57,6 +57,11 @@
                         </x-nav-link>
                     </li>
                     <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('karbantartasok.create')" :active="request()->routeIs('karbantartasok.create')">
+                            {{ __('Rendkívüli karbantartás felvitele') }}
+                        </x-nav-link>
+                    </li> 
+                    <li class="nav-item">
                         <x-nav-link class="nav-link" :href="route('karbantartasok.index')" :active="request()->routeIs('karbantartasok.index')">
                             {{ __('Karbantartások') }}
                         </x-nav-link>

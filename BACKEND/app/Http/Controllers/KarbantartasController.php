@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Karbantartas;
+use App\Models\Tool;
 
 
 class KarbantartasController extends Controller
@@ -28,7 +29,9 @@ class KarbantartasController extends Controller
      */
     public function create()
     {
-        //
+        $tools = Tool::all();
+
+        return view('createkarbantartas', ['tools' => $tools]);
     }
 
     /**
@@ -39,7 +42,15 @@ class KarbantartasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Karbantartas::create([
+            'eszkozid' => $request->get('eszkozid'),
+            'hibaE' => 1,
+            'sulyossag' => $request->get('sulyossag'),
+            'idopont'  => $request->get('idopont'),
+            'allapot' => 'utemezve'
+        ]);
+
+        return redirect('/karbantartasok');
     }
 
     /**

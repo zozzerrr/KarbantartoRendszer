@@ -21,7 +21,7 @@
 
             <div class="mb-3">
                 <x-label for="sulyossag" :value="__('Súlyosság')" />
-                <x-input type="number" min="1" max="10" value="5" id="sulyossag" name="sulyossag">
+                <x-input type="number" min="1" max="10" value="5" id="sulyossag" name="sulyossag" />
             </div>
 
             <div class="mb-3">
