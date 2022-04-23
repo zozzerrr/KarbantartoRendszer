@@ -97,4 +97,15 @@ class KarbantartasController extends Controller
     {
         //
     }
+
+    public static function ujKarbantartas($eszkozid, $idopont)
+    {
+        Karbantartas::create([
+            'eszkozid' => $eszkozid,
+            'hibaE' => 0,
+            'sulyossag' => 1,
+            'idopont'  => $idopont,
+            'allapot' => 'Ütemezve'
+        ]);
+    }
 }

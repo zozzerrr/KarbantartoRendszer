@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Tool;
 use App\Models\Vegzettseg;
+use App\Models\Karbantartas;
 use Illuminate\Http\Request;
 
 class ToolController extends Controller
@@ -51,6 +52,14 @@ class ToolController extends Controller
             'leiras' => $request->get('leiras'),
             'elhelyezkedes'  => $request->get('elhelyezkedes'),
             'kovetkezokarbantartas' => $request->get('kovetkezokarbantartas')
+        ]);
+
+        Karbantartas::create([
+            'eszkozid' => $request->get('id'),
+            'hibaE' => 0,
+            'sulyossag' => 1,
+            'idopont'  => $request->get('kovetkezokarbantartas'),
+            'allapot' => 'Ütemezve'
         ]);
 
         return redirect('/tools');
