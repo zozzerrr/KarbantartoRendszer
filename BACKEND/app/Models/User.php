@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->szerepkor->nev == $role;
     }
+
+    public function kepesitesek()
+    {
+        return $this->belongsToMany(Vegzettseg::class,'kepesites','dolgozoid', 'vegzettsegid');
+    }
 }

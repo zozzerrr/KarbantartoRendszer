@@ -7,17 +7,17 @@
 
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Képesítés</th>
+                <th scope="col">Név</th>
             </tr>
 
             </thead>
             <tbody>
 
-            @foreach ($vegzettsegek as $vegzettseg)
+            @foreach ($karbantartok as $karbantarto)
                 <tr>
                     <td scope="row">{{ $loop->index }}</td>
-                    <td >{{ $vegzettseg->kepesites }}</td>
-                    <td ><a class="btn btn-warning" href="{{ config('app_url') }}/vegoria/{{ $vegzettseg->id }}">Frissítés</a></td>
+                    <td >{{ $karbantarto->nev }}</td>
+                    <td ><a class="btn btn-warning" href="{{ config('app_url') }}/karbantartok/{{ $karbantarto->id }}">Végzettség hozzáadása</a></td>
                 </tr>
             @endforeach
 

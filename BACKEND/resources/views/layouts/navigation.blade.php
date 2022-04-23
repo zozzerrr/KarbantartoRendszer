@@ -40,7 +40,7 @@
                     </li>
                     @endif
 
-                    @if(Auth::user()->hasRole('Operátór'))
+                    @if(Auth::user()->hasRole('Operátor'))
                     <li class="nav-item">
                         <x-nav-link class="nav-link" :href="route('vegzettsegek.create')" :active="request()->routeIs('vegzettsegek.create')">
                             {{ __('Végzettség felvétele') }}
@@ -49,6 +49,11 @@
                     <li class="nav-item">
                         <x-nav-link class="nav-link" :href="route('vegzettsegek.index')" :active="request()->routeIs('vegzettsegek.index')">
                             {{ __('Végzettségek') }}
+                        </x-nav-link>
+                    </li>
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('karbantartok.getAllKarbantarto')" :active="request()->routeIs('karbantartok.getAllKarbantarto')">
+                            {{ __('Karbantartók') }}
                         </x-nav-link>
                     </li>
                     @endif

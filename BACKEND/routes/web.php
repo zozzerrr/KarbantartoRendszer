@@ -4,7 +4,7 @@ use App\Models\Vegzettseg;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStatus;
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\VegzettsegController;
@@ -24,6 +24,9 @@ Route::middleware(['auth','checkRole:3'])->group(function () {
     Route::get('vegoria/{id}', [VegzettsegController::class,'findRemainingCategories']);
     Route::post('vegoria', [VegzettsegController::class,'addCategory'])->name('vegoria.addCategory');
 
+    Route::get('karbantartok', [OperatorController::class,'getAllKarbantarto'])->name('karbantartok.getAllKarbantarto');
+    Route::get('karbantartok/{id}', [OperatorController::class,'getAvailableVegzettsegek'])->name('karbantartok.getAvailableVegzettsegek');
+    Route::post('karbantartok', [OperatorController::class,'addVegzettseg'])->name('karbantartok.addVegzettseg');
 });
 
 
