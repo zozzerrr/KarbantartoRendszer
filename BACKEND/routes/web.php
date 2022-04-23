@@ -8,6 +8,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\VegzettsegController;
+use App\Http\Controllers\KarbantartasController;
 
 
 Route::get('/', function () {
@@ -27,6 +28,8 @@ Route::middleware(['auth','checkRole:3'])->group(function () {
     Route::get('karbantartok', [OperatorController::class,'getAllKarbantarto'])->name('karbantartok.getAllKarbantarto');
     Route::get('karbantartok/{id}', [OperatorController::class,'getAvailableVegzettsegek'])->name('karbantartok.getAvailableVegzettsegek');
     Route::post('karbantartok', [OperatorController::class,'addVegzettseg'])->name('karbantartok.addVegzettseg');
+
+    Route::resource('karbantartasok', KarbantartasController::class);
 });
 
 
