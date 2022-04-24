@@ -29,7 +29,7 @@
             <div class="mb-3">
                 <x-label for="intervallum" :value="__('Intervallum')" />
 
-                <x-input id="intervallum" type="number" name="intervallum" :value="old('intervallum')" required autofocus />
+                <x-input id="intervallum" type="number" name="intervallum" :value="old('intervallum')" autofocus/>
             </div>
 
             <div class="mb-3">

@@ -44,21 +44,31 @@ class CategoryController extends Controller
             $request->validate([
                 'nev' => ['required', 'string', 'max:255'],
                 'szuloid' => ['required', 'numeric'],
-                'intervallum' => ['required', 'numeric'],
                 'normaido' => ['required'],
                 'karbantartasInstrukcio' => ['required', 'string', 'max:255']
             ]);
 
+            // 4. Fő kategória, nincs megadva | nem
+            if($request->get('szuloid') == 0 && null === $request->get('intervallum'))
+            {
+                return back()->with('error', 'Fő kategória esetén meg kell adni az intervallumot!');
+            }
+
+            // 1. Nem fő kategória, van megadva intervallum | mehet
+            // 2. Nem fő kategória, nincs megadva intervallum | mehet
+            // 3. Fő kategória, van megadva | mehet
+            $intervallum = $request->get('intervallum') ? $request->get('intervallum') : Category::find($request->get('szuloid'))->intervallum;
+
             Category::create([
                 'szuloid' => $request->get('szuloid'),
                 'nev' => $request->get('nev'),
-                'intervallum' => $request->get('intervallum'),
+                'intervallum' => $intervallum,
                 'normaido'=> $request->get('normaido'),
                 'karbantartasInstrukcio' => $request->get('karbantartasInstrukcio')
             ]);
 
             return redirect('/categories');
-            }
+        }
         else
         {
             return back()->with('error', 'Válasszon kategóriát!');
