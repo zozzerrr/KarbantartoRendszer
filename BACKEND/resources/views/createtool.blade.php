@@ -11,7 +11,7 @@
                 <x-label for="kategoriaid" :value="__('Katagóriába sorolás')" />
 
                 <select class="form-select" id="kategoriaid" name="kategoriaid" aria-label="kategoriaid">
-                    <option selected>Válasszon</option>
+                    <option hidden>Válasszon</option>
                     @foreach ($categories as $categorie)
                         <option value="{{ $categorie->id }}">{{ $categorie->nev }}</option>
                     @endforeach
@@ -58,6 +58,11 @@
 
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            @if(session()->has('error'))
+                <div class="alert alert-danger p-3 ">
+                    {{ session()->get('error') }}
+                </div>
+            @endif            
         </form>
     </div>
 </x-app-layout>

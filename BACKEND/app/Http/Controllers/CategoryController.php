@@ -37,23 +37,32 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nev' => ['required', 'string', 'max:255'],
-            'szuloid' => ['required', 'numeric'],
-            'intervallum' => ['required', 'numeric'],
-            'normaido' => ['required'],
-            'karbantartasInstrukcio' => ['required', 'string', 'max:255']
-        ]);
+        $category = Category::find($request->get('szuloid'));
+        
+        if($category || $request->get('szuloid') == 0)
+        {
+            $request->validate([
+                'nev' => ['required', 'string', 'max:255'],
+                'szuloid' => ['required', 'numeric'],
+                'intervallum' => ['required', 'numeric'],
+                'normaido' => ['required'],
+                'karbantartasInstrukcio' => ['required', 'string', 'max:255']
+            ]);
 
-        Category::create([
-            'szuloid' => $request->get('szuloid'),
-            'nev' => $request->get('nev'),
-            'intervallum' => $request->get('intervallum'),
-            'normaido'=> $request->get('normaido'),
-            'karbantartasInstrukcio' => $request->get('karbantartasInstrukcio')
-        ]);
+            Category::create([
+                'szuloid' => $request->get('szuloid'),
+                'nev' => $request->get('nev'),
+                'intervallum' => $request->get('intervallum'),
+                'normaido'=> $request->get('normaido'),
+                'karbantartasInstrukcio' => $request->get('karbantartasInstrukcio')
+            ]);
 
-        return redirect('/categories');
+            return redirect('/categories');
+            }
+        else
+        {
+            return back()->with('error', 'Válasszon kategóriát!');
+        }
     }
 
     /**

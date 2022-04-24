@@ -44,25 +44,33 @@ class ToolController extends Controller
      */
     public function store(Request $request)
     {
+        $category = Category::find($request->get('kategoriaid'));
 
-       Tool::create([
-            'id' => $request->get('id'),
-            'kategoriaid' => $request->get('kategoriaid'),
-            'nev' => $request->get('nev'),
-            'leiras' => $request->get('leiras'),
-            'elhelyezkedes'  => $request->get('elhelyezkedes'),
-            'kovetkezokarbantartas' => $request->get('kovetkezokarbantartas')
-        ]);
+        if($category)
+        {   
+           Tool::create([
+                'id' => $request->get('id'),
+                'kategoriaid' => $request->get('kategoriaid'),
+                'nev' => $request->get('nev'),
+                'leiras' => $request->get('leiras'),
+                'elhelyezkedes'  => $request->get('elhelyezkedes'),
+                'kovetkezokarbantartas' => $request->get('kovetkezokarbantartas')
+            ]);
 
-        Karbantartas::create([
-            'eszkozid' => $request->get('id'),
-            'hibaE' => 0,
-            'sulyossag' => 1,
-            'idopont'  => $request->get('kovetkezokarbantartas'),
-            'allapot' => 'Ütemezve'
-        ]);
+            Karbantartas::create([
+                'eszkozid' => $request->get('id'),
+                'hibaE' => 0,
+                'sulyossag' => 1,
+                'idopont'  => $request->get('kovetkezokarbantartas'),
+                'allapot' => 'Ütemezve'
+            ]);
 
-        return redirect('/tools');
+            return redirect('/tools');
+        }
+        else
+        {
+            return back()->with('error', 'Válasszon kategóriát!');
+        }
     }
 
     /**

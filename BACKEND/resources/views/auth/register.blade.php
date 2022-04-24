@@ -45,7 +45,7 @@
                 <x-label for="szerepkorID" :value="__('Szerepkör')" />
 
                  <select class="form-select" id="szerepkorID" name="szerepkorID" aria-label="szerepkorID">
-                     <option selected>Válasszon</option>
+                     <option hidden>Válasszon</option>
                      @foreach ($roles as $role)
                          <option value="{{ $role->id }}">{{ $role->nev }}</option>
                      @endforeach
@@ -62,6 +62,21 @@
 
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+            @if(session()->has('error'))
+                <div class="alert alert-danger p-3 ">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+
+            @if(session()->has('success'))
+                <div class="alert alert-success p-3">
+                    {{ session()->get('success') }}
+                </div>        
+
+            @endif
+
+
         </form>
 
         </div>

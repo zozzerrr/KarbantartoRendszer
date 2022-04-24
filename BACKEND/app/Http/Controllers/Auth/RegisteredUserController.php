@@ -35,6 +35,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $role = Role::find($request->szerepkorID);        
+
+        if($role)
+        {
 
         $request->validate([
             'nev' => ['required', 'string', 'max:255'],
@@ -54,7 +58,14 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         //Auth::login($user);
-        header("Refresh:0");
+        //header("Refresh:0");
+        return back()->with('success', 'Sikeres hozzáadás!');
+
+        }
+        else
+        {
+            return back()->with('error', 'Válasszon szerepkört!');
+        }
 
         //return redirect(RouteServiceProvider::HOME);
     }
