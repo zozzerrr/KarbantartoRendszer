@@ -42,13 +42,15 @@ class CategoryController extends Controller
             'szuloid' => ['required', 'numeric'],
             'intervallum' => ['required', 'numeric'],
             'normaido' => ['required'],
+            'karbantartasInstrukcio' => ['required', 'string', 'max:255']
         ]);
 
         Category::create([
             'szuloid' => $request->get('szuloid'),
             'nev' => $request->get('nev'),
             'intervallum' => $request->get('intervallum'),
-            'normaido'=> $request->get('normaido')
+            'normaido'=> $request->get('normaido'),
+            'karbantartasInstrukcio' => $request->get('karbantartasInstrukcio')
         ]);
 
         return redirect('/categories');

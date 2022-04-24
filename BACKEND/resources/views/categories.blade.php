@@ -11,6 +11,7 @@
                 <th scope="col">Név</th>
                 <th scope="col">Intervallum</th>
                 <th scope="col">Normaidő</th>
+                <th scope="col">Karbantartásra vonatkozó instrukciók</th>
             </tr>
 
             </thead>
@@ -23,6 +24,7 @@
                     <td>{{ $category->nev }}</td>
                     <td>{{ $category->intervallum}}</td>
                     <td>{{ $category->normaido }}</td>
+                    <td>{{ $category->karbantartasInstrukcio}}</td>
                 </tr>
             @endforeach
 

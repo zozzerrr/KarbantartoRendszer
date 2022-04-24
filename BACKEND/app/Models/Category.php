@@ -16,7 +16,8 @@ class Category extends Model
         'szuloid',
         'nev',
         'intervallum',
-        'normaido'
+        'normaido',
+        'karbantartasInstrukcio'
     ];
 
     public function parent()

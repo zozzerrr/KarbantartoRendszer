@@ -8,7 +8,7 @@
 
             <div class="mt-4">
 
-                <x-label for="szerepkorID" :value="__('Szerepkör')" />
+                <x-label for="szerepkorID" :value="__('Szülő kategória')" />
 
                 <select class="form-select" id="szuloid" name="szuloid" aria-label="szuloid">
                     <option selected>Válasszon</option>
@@ -37,6 +37,13 @@
 
                 <x-input id="normaido" type="time" step="1" name="normaido" :value="old('normaido')" required autofocus />
             </div>
+
+            <div class="mb-3">
+                <x-label for="karbantartasInstrukcio" :value="__(' Karbantartásra vonatkozó instrukciók')" />
+
+                <textarea class="form-control" id="karbantartasInstrukcio" name="karbantartasInstrukcio"  rows="3" required></textarea>
+            </div>        
+
 
             <div class="flex items-center justify-end mt-4">
 
