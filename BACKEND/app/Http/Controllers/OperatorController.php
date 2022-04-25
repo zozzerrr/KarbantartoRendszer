@@ -48,7 +48,6 @@ class OperatorController extends Controller
             ['dolgozoid' => $request->get('dolgozoid'), 'vegzettsegid' => $request->get('vegzettsegid')]
         );
 
-        // @TODO
-        return 'kész';
+        return redirect('karbantartok');
     }
 }
