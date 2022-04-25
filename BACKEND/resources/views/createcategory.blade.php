@@ -55,10 +55,10 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
             @if(session()->has('error'))
-                <div class="alert alert-danger p-3 ">
+                <div class="alert alert-danger p-3 my-2">
                     {{ session()->get('error') }}
                 </div>
-            @endif            
+            @endif
         </form>
     </div>
 </x-app-layout>

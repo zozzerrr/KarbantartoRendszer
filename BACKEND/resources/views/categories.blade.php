@@ -20,7 +20,7 @@
             @foreach ($categories as $category)
                 <tr>
                     <td scope="row">{{ $loop->index }}</td>
-                    <td>{{ $category->szuloid }}</td>
+                    <td>{{ $category->parent->nev ?? "" }}</td>
                     <td>{{ $category->nev }}</td>
                     <td>{{ $category->intervallum}}</td>
                     <td>{{ $category->normaido }}</td>
