@@ -42,12 +42,11 @@ class KarbantartasController extends Controller
      */
     public function store(Request $request)
     {
-        $karbantartas = Karbantartas::where('eszkozid', $request->get('eszkozid'))->get();
+        $karbantartas = Karbantartas::where('eszkozid', $request->get('eszkozid'))->firstOrFail();
         $karbantartas->hibaE = 1;
         $karbantartas->sulyossag = $request->get('sulyossag');
         $karbantartas->idopont = $request->get('idopont');
         $karbantartas->allapot = "Ütemezve";
-        dd($karbantartas);
         $karbantartas->save();
 
         return redirect('/karbantartasok');

@@ -22,7 +22,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            //info('tudas');
             $karbantartasok = Karbantartas::all();
             foreach($karbantartasok as $k)
             {
@@ -37,7 +36,7 @@ class Kernel extends ConsoleKernel
                     KarbantartasController::ujKarbantartas($k->eszkozid, $karbantartasIdopont);
                 }
             }
-        })->dailyAt('21:02')->timezone('Europe/Budapest');
+        })->dailyAt('10:17')->timezone('Europe/Budapest');
     }
 
     /**
