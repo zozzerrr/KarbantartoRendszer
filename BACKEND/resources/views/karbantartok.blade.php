@@ -17,7 +17,7 @@
 
             @foreach ($karbantartok as $karbantarto)
                 <tr>
-                    <td scope="row">{{ $loop->index }}</td>
+                    <td scope="row">{{ $loop->index+1 }}</td>
                     <td >{{ $karbantarto->nev }}</td>
                     <td >
                         <div class="dropdown">

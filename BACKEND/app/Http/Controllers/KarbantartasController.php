@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KarbantartasRequest;
 use Illuminate\Http\Request;
 use App\Models\Karbantartas;
 use App\Models\Tool;
@@ -34,11 +35,24 @@ class KarbantartasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param KarbantartasRequest $request
      */
-    public function store(Request $request)
+    public function store(KarbantartasRequest $request)
     {
-        Karbantartas::firstOrCreate(['eszkozid' => $request->get('eszkozid'),'hibaE' => 1, 'sulyossag' => $request->get('sulyossag'),'idopont' => $request->get('idopont'), 'allapot' => 'Ütemezve']);
+        $request->validated();
+
+        Karbantartas::updateOrCreate(
+            [
+                'eszkozid' => $request->get('eszkozid')
+            ],
+            [
+                'hibaE' => 1,
+                'sulyossag' => $request->get('sulyossag'),
+                'idopont' => $request->get('idopont'),
+                'allapot' => 'Ütemezve',
+                'leiras' => $request->get('leiras')
+            ]
+        );
 
         return redirect('karbantartasok');
     }

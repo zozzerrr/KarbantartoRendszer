@@ -17,6 +17,7 @@ class Karbantartas extends Model
         'hibaE',
         'sulyossag',
         'idopont',
-        'allapot'
+        'allapot',
+        'leiras'
     ];
 }

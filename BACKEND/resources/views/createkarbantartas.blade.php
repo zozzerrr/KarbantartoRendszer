@@ -29,6 +29,11 @@
                 <x-input id="idopont" type="date" name="idopont" :value="old('idopont')" required autofocus />
             </div>
 
+            <div class="mb-3">
+                <x-label for="leiras" :value="__('Hiba Leírása')" />
+                <textarea class="form-control" placeholder="Adja meg a hiba leírását!" id="leiras" name="leiras" style="height: 100px">{{ old('leiras')}}</textarea>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
 
                 <x-button class="btn-success">
@@ -37,7 +42,7 @@
             </div>
 
             <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            <x-auth-validation-errors class="mb-4 my-1" :errors="$errors" />
         </form>
     </div>
 </x-app-layout>
