@@ -4,7 +4,8 @@
 
     <form class="p-3" method="POST" action="{{ route('categories.store')}}">
             @csrf
-            <h1> Enter Details to create a category</h1>
+
+            <h1>Kategória létrehozása</h1>
 
             <div class="mt-4">
 
@@ -42,7 +43,7 @@
                 <x-label for="karbantartasInstrukcio" :value="__(' Karbantartásra vonatkozó instrukciók')" />
 
                 <textarea class="form-control" id="karbantartasInstrukcio" name="karbantartasInstrukcio"  rows="3" required></textarea>
-            </div>        
+            </div>
 
 
             <div class="flex items-center justify-end mt-4">
@@ -59,6 +60,8 @@
                     {{ session()->get('error') }}
                 </div>
             @endif
+
         </form>
     </div>
+
 </x-app-layout>

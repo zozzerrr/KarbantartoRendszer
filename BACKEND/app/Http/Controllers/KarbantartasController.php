@@ -38,14 +38,7 @@ class KarbantartasController extends Controller
      */
     public function store(Request $request)
     {
-
-        //$karbantartas = Karbantartas::where('eszkozid', $request->get('eszkozid'))->firstOrFail();
-        $karbantartas = Karbantartas::firstOrCreate(['eszkozid' => $request->get('eszkozid'),'hibaE' => 1, 'sulyossag' => $request->get('sulyossag'),'idopont' => $request->get('idopont'), 'allapot' => 'Ütemezve']);
-        $karbantartas->hibaE = 1;
-        $karbantartas->sulyossag = $request->get('sulyossag');
-        $karbantartas->idopont = $request->get('idopont');
-        $karbantartas->allapot = "Ütemezve";
-        $karbantartas->save();
+        Karbantartas::firstOrCreate(['eszkozid' => $request->get('eszkozid'),'hibaE' => 1, 'sulyossag' => $request->get('sulyossag'),'idopont' => $request->get('idopont'), 'allapot' => 'Ütemezve']);
 
         return redirect('karbantartasok');
     }

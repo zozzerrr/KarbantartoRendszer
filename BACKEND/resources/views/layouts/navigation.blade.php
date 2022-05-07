@@ -89,7 +89,7 @@
                             <x-responsive-nav-link class="nav-link btn btn-danger text-white" :href="route('logout')"
                                                    onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Kilépés') }}
                             </x-responsive-nav-link>
                         </form>
                     </li>
