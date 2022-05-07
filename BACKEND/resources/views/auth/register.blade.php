@@ -1,13 +1,5 @@
 <x-app-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" style="width:20" />
-            </a>
-        </x-slot>
-
-        <div class="row justify-content-center p-2">
-
 
 
         <form method="POST" action="{{ route('register') }}">
@@ -61,27 +53,23 @@
             </div>
 
             <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            <x-auth-validation-errors class="mb-4 my-2" :errors="$errors" />
 
             @if(session()->has('error'))
-                <div class="alert alert-danger p-3 ">
+                <div class="alert alert-danger p-3 my-2">
                     {{ session()->get('error') }}
                 </div>
             @endif
 
             @if(session()->has('success'))
-                <div class="alert alert-success p-3">
+                <div class="alert alert-success p-3 my-2">
                     {{ session()->get('success') }}
-                </div>        
+                </div>
 
             @endif
 
 
         </form>
-
-        </div>
-
-
 
 
     </x-auth-card>

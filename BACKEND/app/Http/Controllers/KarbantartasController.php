@@ -12,12 +12,10 @@ class KarbantartasController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $karbantartasok = Karbantartas::all();
-
 
         return view('karbantartasok', ['allKarbantartasok' => $karbantartasok]);
     }
@@ -25,7 +23,6 @@ class KarbantartasController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -38,26 +35,19 @@ class KarbantartasController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $karbantartas = Karbantartas::where('eszkozid', $request->get('eszkozid'))->firstOrFail();
+
+        //$karbantartas = Karbantartas::where('eszkozid', $request->get('eszkozid'))->firstOrFail();
+        $karbantartas = Karbantartas::firstOrCreate(['eszkozid' => $request->get('eszkozid'),'hibaE' => 1, 'sulyossag' => $request->get('sulyossag'),'idopont' => $request->get('idopont'), 'allapot' => 'Ütemezve']);
         $karbantartas->hibaE = 1;
         $karbantartas->sulyossag = $request->get('sulyossag');
         $karbantartas->idopont = $request->get('idopont');
         $karbantartas->allapot = "Ütemezve";
         $karbantartas->save();
 
-        return redirect('/karbantartasok');
-
-        /*Karbantartas::create([
-            'eszkozid' => $request->get('eszkozid'),
-            'hibaE' => 1,
-            'sulyossag' => $request->get('sulyossag'),
-            'idopont'  => $request->get('idopont'),
-            'allapot' => 'utemezve'
-        ]);*/ 
+        return redirect('karbantartasok');
     }
 
     /**

@@ -12,9 +12,9 @@ class OperatorController extends Controller
     public function getAllKarbantarto()
     {
         $karbantartok = User::all();
-        //dd($karbantartok);
+
         foreach($karbantartok as $key => $karbantarto) {
-            //dd($karbantarto->szerepkor->nev);
+
             if(!$karbantarto->hasRole("Karbantartó")){
                 unset($karbantartok[$key]);
             }
@@ -36,7 +36,7 @@ class OperatorController extends Controller
 
             $availableVegzettsegek = Vegzettseg::select('id','kepesites')->whereNotIn('id', $veg_ids)->get();
 
-            return view('karbantarto', ['vegzettsegek' => $availableVegzettsegek, 'karbantarto' => $karbantarto,'empty' => false]);
+            return view('karbantarto', ['vegzettsegek' => $availableVegzettsegek, 'karbantarto' => $karbantarto,'empty' => false, 'kepesitesek' => $kepesitesek]);
         }
 
         return view('karbantarto', ['empty' => true]);

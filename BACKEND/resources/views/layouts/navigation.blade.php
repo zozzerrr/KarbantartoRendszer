@@ -1,13 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
     <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <a class="navbar-brand" >{{ Auth::user()->nev }}</a>
 
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <ul class="navbar-nav">
 
                 <li class="nav-item">
                     <x-nav-link class="nav-link" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -38,9 +41,9 @@
                             {{ __('Eszközök') }}
                         </x-nav-link>
                     </li>
-                    @endif
+                @endif
 
-                    @if(Auth::user()->hasRole('Operátor'))
+                @if(Auth::user()->hasRole('Operátor'))
                     <li class="nav-item">
                         <x-nav-link class="nav-link" :href="route('vegzettsegek.create')" :active="request()->routeIs('vegzettsegek.create')">
                             {{ __('Végzettség felvétele') }}
@@ -60,41 +63,40 @@
                         <x-nav-link class="nav-link" :href="route('karbantartasok.create')" :active="request()->routeIs('karbantartasok.create')">
                             {{ __('Rendkívüli karbantartás felvitele') }}
                         </x-nav-link>
-                    </li> 
+                    </li>
                     <li class="nav-item">
                         <x-nav-link class="nav-link" :href="route('karbantartasok.index')" :active="request()->routeIs('karbantartasok.index')">
                             {{ __('Karbantartások') }}
                         </x-nav-link>
-                    </li>                    
-                    @endif
+                    </li>
+                @endif
 
 
                 @if(Auth::user()->hasRole('Adminisztrátor'))
-                <li class="nav-item">
-                    <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
-                        {{ __('Felhasználó felvétele') }}
-                    </x-nav-link>
-                </li>
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('register')" :active="request()->routeIs('register')">
+                            {{ __('Felhasználó felvétele') }}
+                        </x-nav-link>
+                    </li>
                 @endif
 
                 @if(Auth::user())
-                <li class="nav-item">
-                    <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
+                    <li class="nav-item">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-                        <x-responsive-nav-link class="nav-link btn btn-danger" :href="route('logout')"
-                                               onclick="event.preventDefault();
+                            <x-responsive-nav-link class="nav-link btn btn-danger text-white" :href="route('logout')"
+                                                   onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form>
-                </li>
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    </li>
                 @endif
+
             </ul>
 
         </div>
-
     </div>
-
 </nav>
