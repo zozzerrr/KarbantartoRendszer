@@ -13,7 +13,7 @@ class TaskManager
     public static function feladatSzakemberhezRendelese($karbantartas)
     {
         $vanVegzettsegeSzakemberek = self::vegzettsegekEgyeztetse($karbantartas);
-        $vanVegzettsegeSzakemberek = self::torolMarHozzarendeltSzemelyt($vanVegzettsegeSzakemberek, $karbantartas);
+        //$vanVegzettsegeSzakemberek = self::torolMarHozzarendeltSzemelyt($vanVegzettsegeSzakemberek, $karbantartas);
         $alkalmasSzakemberek = self::kinekVanRaIdeje($vanVegzettsegeSzakemberek, $karbantartas);
         $msg = "";
         $alert = "";
@@ -26,7 +26,7 @@ class TaskManager
              * Ha nincs akkornézzük az összes embert majd vonjuk ki azokat akiknek nincs ideje és van megfelelő végzetsége hozzá.
              */
             $kevesbeKepzettSzakember = self::legtobbSzuksegesVegzettsegel($karbantartas);
-            $kevesbeKepzettSzakember = self::torolMarHozzarendeltSzemelyt($kevesbeKepzettSzakember, $karbantartas);
+            //$kevesbeKepzettSzakember = self::torolMarHozzarendeltSzemelyt($kevesbeKepzettSzakember, $karbantartas);
             /**
              * Nézzük meg azokat akiknek legalább 1 végzettsége van hozzá, hogy köztük kinek van ideje.
              */
@@ -41,7 +41,7 @@ class TaskManager
                     return !in_array($szemely->id, array_merge($alkalmasSzakemberek->pluck("id")->toArray(), $kevesbeKepzettSzakember->pluck("id")->toArray()));
                 });
 
-                $nemMegfeleloSzakember = self::torolMarHozzarendeltSzemelyt($nemMegfeleloSzakember, $karbantartas);
+                //$nemMegfeleloSzakember = self::torolMarHozzarendeltSzemelyt($nemMegfeleloSzakember, $karbantartas);
 
                 /**
                  * Ha nincs kevésbé képzett, nézzük van-e képzetlen szabad idővel rendelkező
@@ -120,9 +120,9 @@ class TaskManager
     {
 
         $ids = $karbantartas->feladat
-            ->sortBy([
-                function ($a, $b) {
-                    return Carbon::create($a->idopont)->format("Y-m-d") < Carbon::create($b->idopont)->format("Y-m-d");
+            ->search([
+                function ($item, $key) use($karbantartas) {
+                   return true;
                 }
             ])
             ->first();
@@ -230,9 +230,9 @@ class TaskManager
          */
         $feladat_elvegzo = $szakemberek->first();
 
-        if ($karbantartas->allapot == "Elutasitva") {
+        /*if ($karbantartas->allapot == "Elutasitva" && $feladat_elvegzo->vanIlyenFeladata()) {
             self::meglevoKapjaMegint($karbantartas);
-        }
+        }*/
 
         /**
          * Rendeljük hozzá a feladatot.
@@ -253,7 +253,7 @@ class TaskManager
     {
         $feladat = Feladat::all()
             ->where("karbantartasid", "=", $karbantartas->id, "szakember")
-            ->sortByDesc("idopont")
+            ->sortByDesc("id")
             ->first();
 
         $feladat->update(['elfogadtaE' => null, 'indoklas' => null, 'idopont' => $karbantartas->idopont]);
