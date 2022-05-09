@@ -43,4 +43,8 @@ Route::middleware(['auth','checkRole:2'])->group(function () {
 
 Route::middleware(['auth','checkRole:4'])->group(function () {
     Route::get('feladatok',[FeladatController::class,'index'])->name('feladatok.index');
+    Route::post('feladatok/elutasit',[FeladatController::class,'update'])->name('feladatok.update');
+    Route::post('feladatok/elfogad',[FeladatController::class,'elfogad'])->name('feladatok.elfogad');
+    Route::post('feladatok/megkezd',[FeladatController::class,'megkezd'])->name('feladatok.megkezd');
+    Route::post('feladatok/befejez',[FeladatController::class,'befejez'])->name('feladatok.befejez');
 });
