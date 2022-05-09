@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <x-label for="idopont" :value="__('Időpont')" />
-                <x-input id="idopont" type="date" name="idopont" :value="old('idopont')" required autofocus />
+                <x-input id="idopont" type="datetime-local" name="idopont" :value="old('idopont')" required autofocus />
             </div>
 
             <div class="mb-3">

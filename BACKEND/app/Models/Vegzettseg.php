@@ -18,6 +18,6 @@ class Vegzettseg extends Model
 
     public function kategoria()
     {
-        return $this->belongsToMany(Category::class,'vegoria','vegzettseg_id', 'kategoria_id');
+        return $this->belongsToMany(Category::class,'kepesites','vegzettsegid', 'dolgozoid');
     }
 }

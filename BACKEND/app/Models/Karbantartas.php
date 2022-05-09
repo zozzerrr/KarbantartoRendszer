@@ -20,4 +20,24 @@ class Karbantartas extends Model
         'allapot',
         'leiras'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'feladat','karbantartasid', 'szakemberid');
+    }
+
+    public function kategoria()
+    {
+        return $this->belongsToMany(Category::class,'feladat','karbantartasid', 'szakemberid');
+    }
+
+    public function tools()
+    {
+        return $this->belongsTo(Tool::class, 'eszkozid');
+    }
+
+    public function feladat()
+    {
+        return $this->hasMany(Feladat::class, 'karbantartasid');
+    }
 }

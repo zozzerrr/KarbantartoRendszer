@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\TaskManager;
 use App\Http\Requests\KarbantartasRequest;
 use Illuminate\Http\Request;
 use App\Models\Karbantartas;
@@ -41,7 +42,7 @@ class KarbantartasController extends Controller
     {
         $request->validated();
 
-        Karbantartas::updateOrCreate(
+        $karbantartas = Karbantartas::updateOrCreate(
             [
                 'eszkozid' => $request->get('eszkozid')
             ],
@@ -54,7 +55,9 @@ class KarbantartasController extends Controller
             ]
         );
 
-        return redirect('karbantartasok');
+        $result = TaskManager::feladatSzakemberhezRendelese($karbantartas);
+
+        return redirect('karbantartasok')->with(["result" => $result]);
     }
 
     /**

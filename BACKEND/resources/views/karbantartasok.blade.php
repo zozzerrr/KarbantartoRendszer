@@ -2,6 +2,13 @@
 
     <div class="container">
 
+        @if(isset($result))
+        <div class="alert alert-{{ $result["alert"] }} alert-dismissible fade show" role="alert">
+            <p>{{ $result["msg"] }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
         <table class="table">
             <thead>
 

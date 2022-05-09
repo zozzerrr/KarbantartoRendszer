@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Vegzettseg::class,'kepesites','dolgozoid', 'vegzettsegid');
     }
+
+    public function feladat()
+    {
+        return $this->belongsToMany(Karbantartas::class,'feladat','szakemberid', 'karbantartasid');
+    }
 }
