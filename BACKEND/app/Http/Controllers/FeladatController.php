@@ -27,6 +27,7 @@ class FeladatController extends Controller
             ->orderByDesc('karbantartas.sulyossag')
             ->get();
 
+            return view('feladatok', ['allFeladatok' => $feladatok]);
      }
 
       public function store($request)

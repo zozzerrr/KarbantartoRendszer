@@ -80,11 +80,21 @@
                     </li>
                 @endif
 
+                @if(Auth::user()->hasRole('Karbantartó'))
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link" :href="route('feladatok.index')" :active="request()->routeIs('feladatok.index')">
+                            {{ __('Feladatok') }}
+                        </x-nav-link>
+                    </li>
+                @endif
+
                 @if(Auth::user())
                     <li class="nav-item">
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
+
+
 
                             <x-responsive-nav-link class="nav-link btn btn-danger text-white" :href="route('logout')"
                                                    onclick="event.preventDefault();
@@ -94,6 +104,8 @@
                         </form>
                     </li>
                 @endif
+
+
 
             </ul>
 

@@ -9,7 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\VegzettsegController;
 use App\Http\Controllers\KarbantartasController;
-
+use App\Http\Controllers\FeladatController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -39,4 +39,8 @@ Route::middleware(['auth','checkRole:2'])->group(function () {
     Route::resource('categories', CategoryController::class)
         ->names('categories');
 
+});
+
+Route::middleware(['auth','checkRole:4'])->group(function () {
+    Route::get('feladatok',[FeladatController::class,'index'])->name('feladatok.index');
 });
